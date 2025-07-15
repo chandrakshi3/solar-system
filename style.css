@@ -4,8 +4,11 @@ body {
   background: #000;
   color: #00ffff;
   text-align: center;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 60px; /* extra space to avoid cutoff */
 }
+
 
 .title {
   font-size: 3rem;
@@ -50,7 +53,6 @@ input[type="range"] {
   top: 0;
 }
 
-
 @media (max-width: 768px) {
   .title {
     font-size: 2rem;
@@ -73,7 +75,8 @@ input[type="range"] {
 
   #scene-container {
     height: 60vh;
-    top: -30px; /* 👈 this moves the canvas upward */
+    top: 0;
   }
 }
+
 
