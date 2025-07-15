@@ -19,7 +19,11 @@ scene.background = new THREE.TextureLoader().load('https://upload.wikimedia.org/
 
 const camera = new THREE.PerspectiveCamera(60, window.innerWidth / (window.innerHeight * 0.8), 0.1, 1000);
 // higher and further
-camera.position.set(0, 200, 350); // Y = 200 to see from top
+camera.position.set(0, 200, 350); 
+if (window.innerWidth < 768) {
+  camera.position.set(0, 220, 400); // zoom out more for mobile
+}
+// Y = 200 to see from top
 camera.lookAt(0, 0, 0);
 
 
@@ -48,16 +52,19 @@ scene.add(sun);
 
 
 // Planet Data
+const isMobile = window.innerWidth < 768;
+
 const planetData = [
-  { name: "Mercury", color: 0xaaaaaa, size: 3, distance: 40, speed: 0.03 },
-  { name: "Venus", color: 0xffcc99, size: 4.5, distance: 55, speed: 0.025 },
-  { name: "Earth", color: 0x3399ff, size: 5, distance: 70, speed: 0.02 },
-  { name: "Mars", color: 0xff3300, size: 4.2, distance: 85, speed: 0.017 },
-  { name: "Jupiter", color: 0xff9966, size: 9, distance: 110, speed: 0.015 },
-  { name: "Saturn", color: 0xffff99, size: 8, distance: 135, speed: 0.012 },
-  { name: "Uranus", color: 0x66ffff, size: 6.5, distance: 160, speed: 0.01 },
-  { name: "Neptune", color: 0x3333ff, size: 6, distance: 180, speed: 0.008 }
+  { name: "Mercury", color: 0xaaaaaa, size: 3, distance: isMobile ? 30 : 40, speed: 0.03 },
+  { name: "Venus", color: 0xffcc99, size: 4.5, distance: isMobile ? 40 : 55, speed: 0.025 },
+  { name: "Earth", color: 0x3399ff, size: 5, distance: isMobile ? 50 : 70, speed: 0.02 },
+  { name: "Mars", color: 0xff3300, size: 4.2, distance: isMobile ? 60 : 85, speed: 0.017 },
+  { name: "Jupiter", color: 0xff9966, size: 9, distance: isMobile ? 80 : 110, speed: 0.015 },
+  { name: "Saturn", color: 0xffff99, size: 8, distance: isMobile ? 95 : 135, speed: 0.012 },
+  { name: "Uranus", color: 0x66ffff, size: 6.5, distance: isMobile ? 110 : 160, speed: 0.01 },
+  { name: "Neptune", color: 0x3333ff, size: 6, distance: isMobile ? 125 : 180, speed: 0.008 }
 ];
+
 
 
 
