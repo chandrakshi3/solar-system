@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: #000;
+  color: #00ffff;
+  text-align: center;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 3rem;
+  margin-top: 20px;
+  color: #00ffff;
+  text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
+}
+
+#controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+#controls label {
+  color: #00ffff;
+  font-size: 13px;
+}
+
+input[type="range"] {
+  accent-color: #00ffff;
+  background-color: #111;
+}
+
+.btn {
+  background: transparent;
+  color: #00ffff;
+  border: 2px solid #00ffff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  margin: 10px auto;
+  cursor: pointer;
+  text-shadow: 0 0 10px #00ffff;
+  box-shadow: 0 0 15px #00ffff;
+}
+#scene-container {
+  width: 100vw;
+  height: 75vh;
+  position: relative;
+  top: 0;
+}
+
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  #controls {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  input[type="range"] {
+    width: 200px;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 6px 16px;
+  }
+
+  #scene-container {
+    height: 60vh;
+    top: -30px; /* 👈 this moves the canvas upward */
+  }
+}
+
