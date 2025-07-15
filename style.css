@@ -77,5 +77,10 @@ input[type="range"] {
     top: 0;
   }
 }
+@media (max-width: 768px) {
+  #scene-container {
+    padding-top: 30px;
+  }
+}
 
 
