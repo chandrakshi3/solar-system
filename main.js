@@ -13,13 +13,14 @@ const textures = {
 
 // Setup Scene
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x111133); // light blue-black
+scene.background = new THREE.TextureLoader().load('https://upload.wikimedia.org/wikipedia/commons/1/17/NASA-Hubble-Space-Telescope-View-of-Galaxy-NGC-2841.jpg');
+
 
 
 const camera = new THREE.PerspectiveCamera(60, window.innerWidth / (window.innerHeight * 0.8), 0.1, 1000);
 // higher and further
+camera.position.set(0, 200, 350); // Y = 200 to see from top
 camera.lookAt(0, 0, 0);
-camera.position.set(0, 100, window.innerWidth < 768 ? 220 : 300);
 
 
 
@@ -66,17 +67,19 @@ function createLabel(text) {
   const canvas = document.createElement('canvas');
   canvas.width = 256;
   canvas.height = 64;
+
   const ctx = canvas.getContext('2d');
   ctx.fillStyle = '#00ffff';
-  ctx.font = 'bold 24px Arial';
+  ctx.font = 'bold 28px Arial';
   ctx.fillText(text, 10, 40);
 
   const texture = new THREE.CanvasTexture(canvas);
   const material = new THREE.SpriteMaterial({ map: texture, transparent: true });
   const sprite = new THREE.Sprite(material);
-  sprite.scale.set(16, 8, 1);
+  sprite.scale.set(20, 10, 1);
   return sprite;
 }
+
 
 
 planetData.forEach(data => {
@@ -94,8 +97,9 @@ planetData.forEach(data => {
 
   // Create and attach a label
   const label = createLabel(data.name);
-label.position.set(0, data.size * 1.5, 0); // Adjust for enlarged planet
+label.position.set(0, data.size * 2.5, 0); // lift label above the planet
 mesh.add(label);
+
 
 
   // Orbit ring
@@ -152,7 +156,8 @@ document.querySelectorAll('#controls input').forEach(input => {
 });
 
 window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth / (window.innerHeight * 0.8);
+  camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight * 0.8);
+  renderer.setSize(window.innerWidth, window.innerHeight);
 });
+
